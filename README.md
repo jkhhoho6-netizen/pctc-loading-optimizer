@@ -61,6 +61,8 @@ npm install
 npm run dev
 ```
 
+[View Deployed Project](https://pctc-loading-optimizer.vercel.app)
+
 ## 프로젝트 한줄 소개
 
 PCTC(자동차운반선)의 데크별 유효고·허용중량 제약 안에서, 선적할 차량 목록을 어떻게 배치해야 데크 공간을 최대한 활용할 수 있는지 2D bin-packing 알고리즘으로 계산하고 데크별 적재 도면을 시각화하는 시뮬레이터입니다.
