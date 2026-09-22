@@ -13,12 +13,12 @@ import {
 const PALETTE = ["#60a5fa", "#34d399", "#f472b6", "#fbbf24", "#a78bfa", "#f87171", "#22d3ee"];
 
 const DEFAULT_QUANTITIES: Record<string, number> = {
-  "compact-sedan": 220,
-  "midsize-sedan": 180,
-  "compact-suv": 140,
-  "large-suv": 90,
-  pickup: 50,
-  "small-truck": 20,
+  "compact-sedan": 320,
+  "midsize-sedan": 260,
+  "compact-suv": 320,
+  "large-suv": 120,
+  pickup: 70,
+  "small-truck": 25,
 };
 
 function formatPercent(x: number) {
