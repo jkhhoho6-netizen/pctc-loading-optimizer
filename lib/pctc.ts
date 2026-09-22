@@ -176,17 +176,19 @@ export function optimizeLoading(
   for (const inst of instances) {
     const { type } = inst;
 
-    // 유효고를 만족하는 데크 중, 유효고가 낮은 순 -> 이미 더 채워진 순으로 시도한다.
+    // 유효고를 만족하는 데크 중, 유효고가 낮은 순으로 우선 시도한다.
     // (여유 있는 높은 데크는 키 큰 차량을 위해 최대한 아껴둔다)
+    // 같은 유효고 등급 안에서는 "채움 비율이 가장 낮은" 데크를 우선해, 한 데크를
+    // 먼저 꽉 채우고 다음 데크로 넘어가는 대신 같은 등급의 데크들이 고르게 채워지도록 한다.
     const candidates = deckStates
       .filter((s) => s.deck.clearHeight >= type.height - 1e-9)
       .sort((a, b) => {
         if (a.deck.clearHeight !== b.deck.clearHeight) {
           return a.deck.clearHeight - b.deck.clearHeight;
         }
-        const remainA = a.deck.length * a.deck.width - a.usedLength * a.deck.width;
-        const remainB = b.deck.length * b.deck.width - b.usedLength * b.deck.width;
-        return remainA - remainB;
+        const utilA = a.usedLength / a.deck.length;
+        const utilB = b.usedLength / b.deck.length;
+        return utilA - utilB;
       });
 
     let placed = false;
